@@ -7,9 +7,12 @@ import { Component, Input } from '@angular/core';
 })
 export class GameComponent {
 
-  @Input()
-  isShowStartScreen;
+  isShowStartScreen = true;
+  isShowBoard = false;
 
-  constructor() { }
+  startGame() {
+    this.isShowStartScreen = false;
+    this.isShowBoard = true;
+  }
 
 }

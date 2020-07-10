@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Game } from '../../model/game.model';
 import { Subject } from 'rxjs';
-import { HttpService } from 'src/app/service/http.service';
+import { HttpService } from '../../service/http.service';
 
 @Component({
   selector: 'app-board',
