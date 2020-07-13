@@ -1,1 +1,2 @@
-<app-game></app-game>
+<app-start *ngIf="showStart" (eventShowStart)="changeScreens($event)"></app-start>
+<app-game *ngIf="showGame"></app-game>

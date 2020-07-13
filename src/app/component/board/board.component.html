@@ -1,9 +1,7 @@
-<ng-container *ngIf="isShowBoard">
-    <button (click)="resetBoard(game.board.id)">NEW GAME</button>
-    <main>
-        <app-square
-            *ngFor="let square of squares; let i = index" 
-            [square]="game.board.squares[i]">
-        </app-square>
-    </main>
-</ng-container>
+<div class="board">
+    <app-square 
+        *ngFor="let square of squares; let i = index"
+        [square]="board.squares[i]"
+        [hardDisable]="hardDisable">
+    </app-square>
+</div>

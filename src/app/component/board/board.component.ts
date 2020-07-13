@@ -1,38 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Game } from '../../model/game.model';
-import { Subject } from 'rxjs';
-import { HttpService } from '../../service/http.service';
+import { Component, Input, ViewChild } from '@angular/core';
+import { Board } from '../../model/game.model';
+import { SquareComponent } from '../square/square.component';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent {
 
+  @ViewChild(SquareComponent) squareComponent:SquareComponent;
   @Input()
-  isShowBoard;
-  id: number = 99;
-  squares = Array(9)
-  game: Game;
-  gameSubject = new Subject<Game>();
+  board: Board;
+  squares = Array(9);
+  hardDisable = false;
 
-  constructor(private httpService: HttpService) { }
-
-  ngOnInit(): void {
-    this.createGame();
+  disableButtons(hardDisable: boolean): void {
+    this.hardDisable = hardDisable;
   }
-
-  createGame(): void {
-    this.httpService.createGame().subscribe(game => {
-      this.game = game;
-    });
-  }
-
-  resetBoard(boardId: number): void {
-    this.httpService.resetBoard(boardId).subscribe(board => {
-      this.game.board = board;
-    });
-  }
-
 }

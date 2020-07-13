@@ -8,4 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'tictactoe-ai-angular';
 
+  showStart = true;
+  showGame = false;
+
+  changeScreens(showStart: boolean) {
+    this.showStart = showStart;
+    this.showGame = !showStart;
+  }
 }

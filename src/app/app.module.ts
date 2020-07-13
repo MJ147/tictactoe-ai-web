@@ -9,13 +9,15 @@ import { SquareComponent } from './component/square/square.component';
 import { HttpService } from './service/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { StartComponent } from './component/start/start.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
     BoardComponent,
-    SquareComponent
+    SquareComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,

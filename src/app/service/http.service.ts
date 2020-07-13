@@ -24,4 +24,8 @@ export class HttpService {
     return this.http.put<Board>(this.ROOT_URL + 'board/reset/' + boardId, null);
   }
 
+  checkWin(boardId: number): Observable<Number>{
+    return this.http.get<number>(this.ROOT_URL + 'game/check/' + boardId);
+  }
+
 }

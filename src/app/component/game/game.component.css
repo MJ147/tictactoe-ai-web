@@ -1,0 +1,25 @@
+.menu {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -120%);
+    text-align: center;
+    position: absolute;
+}
+
+button {
+    width: 150px;
+    font-size: large;
+    padding: 10px;
+    left: 50%;
+    transform: translate(-50%, -300px);
+    position: absolute;
+}
+
+.info {
+    width: 150px;
+    font-size: x-large;
+    padding: 10px;
+    left: 50%;
+    transform: translate(-50%, -230px);
+    position: absolute;
+}

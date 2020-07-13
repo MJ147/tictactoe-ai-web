@@ -1,10 +1,6 @@
-<ng-container *ngIf="isShowStartScreen">
-    <h1>Hello in Tic Tac Toe game.</h1>
-    <h2>Try to play with AI computer player which use machine learning to learn how to win in Tic Tac Toe.</h2>
-    <h2>The computer player will be losing in the first games, but he will be better in every next game.</h2>
-    
-    <button (click)="startGame()">Start Game</button>
-</ng-container>
+<div class="menu">
+    <div class="info"> {{ info }} </div>
+    <button (click)="resetBoard(game.board.id)">NEW GAME</button>
 
-<app-board [isShowBoard]="isShowBoard"></app-board>
-
+<app-board *ngIf="game" [board]="game.board"></app-board>
+</div>

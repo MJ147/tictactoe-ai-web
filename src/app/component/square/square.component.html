@@ -1,1 +1,1 @@
-<button (click)="makeMove()" >{{ convertToText(square.value) }}</button>
+<button [disabled]="isDisable" (click)="makeMove()" >{{ convertToText(square.value) }}</button>
