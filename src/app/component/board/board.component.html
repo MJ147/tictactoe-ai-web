@@ -2,6 +2,7 @@
     <app-square 
         *ngFor="let square of squares; let i = index"
         [square]="board.squares[i]"
-        [hardDisable]="hardDisable">
+        [hardDisable]="hardDisable"
+        (changeBoardEvent)="updateBoard($event)">
     </app-square>
 </div>

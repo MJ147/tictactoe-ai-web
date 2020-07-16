@@ -26,8 +26,8 @@ export class GameComponent {
   createGame(): void {
     this.httpService.createGame().subscribe(game => {
       this.game = game;
-      this.eventService.changeValueListener().subscribe(info => {
-        this.checkWin()
+      this.eventService.changeValueListener().subscribe(() => {
+        this.checkWin();
       })
     });
   }

@@ -16,8 +16,8 @@ export class HttpService {
     return this.http.post<Game>(this.ROOT_URL + 'game/create', null);
   }
 
-  makeMove(squareId: number): Observable<Square>{
-    return this.http.put<Square>(this.ROOT_URL + 'player/move/' + squareId, null);
+  makeMove(squareId: number): Observable<Board>{
+    return this.http.put<Board>(this.ROOT_URL + 'game/move/' + squareId, null);
   }
 
   resetBoard(boardId: number): Observable<Board>{

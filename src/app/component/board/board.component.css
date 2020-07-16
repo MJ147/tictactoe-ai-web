@@ -11,14 +11,3 @@
 app-square {
     height: 100px;
 }
-
-.menu {
-    font-size: large;
-    padding: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -280px);
-    position: absolute;
-}
-
-

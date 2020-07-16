@@ -1,6 +1,6 @@
-<div class="menu">
+<div *ngIf="game" class="menu">
     <div class="info"> {{ info }} </div>
     <button (click)="resetBoard(game.board.id)">NEW GAME</button>
 
-<app-board *ngIf="game" [board]="game.board"></app-board>
+<app-board [board]="game.board"></app-board>
 </div>
