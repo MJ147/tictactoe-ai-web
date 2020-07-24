@@ -1,1 +1,1 @@
-<button [disabled]="isDisable" (click)="makeMove()" >{{ convertToText(square.value) }}</button>
+<button mat-raised-button [color]="color" [disabled]="isDisable" (click)="makeMove()" >{{ convertToText(square.value) }}</button>

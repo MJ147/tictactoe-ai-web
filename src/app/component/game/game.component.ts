@@ -15,6 +15,10 @@ export class GameComponent {
 
   game: Game;
   info: String = "";
+  isDisable: boolean = false;
+  isSideBarOpen = false;
+  pvpColor: String = "primary";
+  pvcColor: String = "secondary";
 
   constructor(private httpService: HttpService,
               private eventService: EventService) {}
@@ -38,6 +42,12 @@ export class GameComponent {
     });
     this.info = "";
     this.boardComponent.disableButtons(false);
+    this.boardComponent.resetButtonsColor()
+  }
+
+  siulateGames(gameId: number, numberOfGames: number): void {
+    this.httpService.simulateGames(gameId, numberOfGames).subscribe();
+    this.resetBoard(this.game.board.id);
   }
 
   checkWin(): void {
@@ -59,6 +69,26 @@ export class GameComponent {
         }
       }
     });
+  }
+
+  saveAi(fileName: string){
+    this.httpService.saveAi(fileName).subscribe();
+  }
+
+  loadAi(fileName: string){
+    this.httpService.loadAi(fileName).subscribe();
+  }
+
+  pvpMode(): void {
+    this.isSideBarOpen = false;
+    this.pvpColor = "primary";
+    this.pvcColor = "secondary";
+  }
+
+  pvcMode(): void {
+    this.isSideBarOpen = true;
+    this.pvpColor = "secondary";
+    this.pvcColor = "primary";
   }
 
 }

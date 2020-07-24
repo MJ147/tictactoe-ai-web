@@ -1,6 +1,31 @@
-<div *ngIf="game" class="menu">
-    <div class="info"> {{ info }} </div>
-    <button (click)="resetBoard(game.board.id)">NEW GAME</button>
-
-<app-board [board]="game.board"></app-board>
-</div>
+<mat-drawer-container hasBackdrop="false">
+    <mat-drawer [opened]="isSideBarOpen" mode="side">
+        <div class="menu-header">
+            <p class="menu-title">AI PLAYER OPTIONS</p>
+        </div>
+        <div class="menu">
+            <p class="menu-text">Choose pre learned Computer Player, 
+                                 after a given number of games played:</p>
+            <div class="ai-menu">
+                <button mat-raised-button color="accent" class="main-button" (click)="loadAi('1000.csv')">1000</button>
+                <button mat-raised-button color="accent" class="main-button" (click)="loadAi('10000.csv')">10000</button>
+                <button mat-raised-button color="accent" class="main-button" (click)="loadAi('100000.csv')">100000</button>
+            </div>
+            <p class="menu-text">Reset player skills and learn Computer Player by play with you:
+            </p>
+            <button mat-raised-button color="accent" class="main-button">RESET AI PLAYER</button>
+            <p class="menu-text">You can also speed up Computer Player learning by simulating 1000 games.
+                                 It will take something about a minute:</p>
+            <button mat-raised-button color="accent" class="main-button" (click)="siulateGames(game.id, 1000)">SIMULATE 1000 GAMES</button>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="board-container">
+            <button mat-raised-button [color]="pvpColor" class="main-button" (click)="pvpMode()">PLAYER VS PLAYER</button>
+            <button mat-raised-button [color]="pvcColor" class="main-button" (click)="pvcMode()">PLAYER VS COMPUTER</button>
+            <p class="info"> {{ info }} </p>
+            <app-board [board]="game.board"></app-board>
+            <button mat-raised-button color="primary" class="main-button" (click)="resetBoard(game.board.id)">PLAY AGAIN</button>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

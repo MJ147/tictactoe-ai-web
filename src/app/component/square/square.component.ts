@@ -17,35 +17,50 @@ export class SquareComponent {
   isDisable: boolean;
   @Input()
   hardDisable: boolean = false;
+  color: string = "secondary";
+  @Input()
+  squareColor: string = "secondary";
 
   constructor(private httpService: HttpService,
               private eventService: EventService) {}
 
   ngDoCheck(){
     this.disableButton();
+    this.resetButtonColor();
   }
 
   convertToText(squareValue: number): string {
     if(squareValue === 0) {
       return "";
     } else {
+      if (squareValue === 1) {
+        this.color = "primary";
+      } else {
+        this.color = "accent";
+      }
       return (squareValue === 1) ? "X" : "O"; 
     }
   }
 
   makeMove(): void {
-    this.httpService.makeMove(this.square.id).subscribe( board => {
+    this.httpService.makeMove(this.square.id, true).subscribe( board => {
       this.eventService.emitChangeValueEvent(board);
       this.changeBoardEvent.emit(board);
     });
   }
 
   disableButton(): void {
-    if (this.square.value === 0 && !this.hardDisable) {
-      this.isDisable = false;
-    } else {
+    if (this.square.value === 0 && this.hardDisable) {
       this.isDisable = true;
+    } else {
+      this.isDisable = false;
     };
+  }
+
+  resetButtonColor(): void {
+    if (this.square.value === 0 && this.squareColor === "secondary") {
+      this.color = "secondary";
+    }
   }
 
 }
