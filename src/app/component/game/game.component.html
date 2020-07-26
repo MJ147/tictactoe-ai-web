@@ -13,7 +13,7 @@
             </div>
             <p class="menu-text">Reset player skills and learn Computer Player by play with you:
             </p>
-            <button mat-raised-button color="accent" class="main-button">RESET AI PLAYER</button>
+            <button mat-raised-button color="accent" class="main-button" (click)="deleteAllMoves()">RESET AI PLAYER</button>
             <p class="menu-text">You can also speed up Computer Player learning by simulating 1000 games.
                                  It will take something about a minute:</p>
             <button mat-raised-button color="accent" class="main-button" (click)="siulateGames(game.id, 1000)">SIMULATE 1000 GAMES</button>

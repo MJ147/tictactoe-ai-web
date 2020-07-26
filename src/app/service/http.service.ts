@@ -34,6 +34,10 @@ export class HttpService {
     return this.http.get<number>(this.ROOT_URL + 'game/check/' + boardId);
   }
 
+  deleteAllMoves(){
+    return this.http.delete(this.ROOT_URL + 'move/deleteAll');
+  }
+
   saveAi(fileName: string){
     const param = new HttpParams().set('fileName', fileName);
     return this.http.get(this.ROOT_URL + 'game/save', {params: param});

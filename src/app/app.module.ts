@@ -15,6 +15,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { LoadingComponent } from './component/loading/loading.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     GameComponent,
     BoardComponent,
     SquareComponent,
-    StartComponent
+    StartComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

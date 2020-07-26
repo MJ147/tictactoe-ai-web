@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Board } from '../model/game.model';
-import { BoardComponent } from '../component/board/board.component';
+import { Square } from '../model/game.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
 
-  private changeValueEvent = new BehaviorSubject<Board>(null);
+  private changeValueEvent = new BehaviorSubject<Square>(null);
 
-  emitChangeValueEvent(board: Board){
-    this.changeValueEvent.next(board);
+  emitChangeValueEvent(square: Square){
+    this.changeValueEvent.next(square);
   }
 
   changeValueListener(){

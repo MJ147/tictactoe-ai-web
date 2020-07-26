@@ -3,7 +3,6 @@
         *ngFor="let square of squares; let i = index"
         [square]="board.squares[i]"
         [hardDisable]="hardDisable"
-        [squareColor]="squareColor"
-        (changeBoardEvent)="updateBoard($event)">
+        [squareColor]="squareColor">
     </app-square>
 </main>

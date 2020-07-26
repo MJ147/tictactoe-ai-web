@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { HttpService } from '../../service/http.service';
 import { EventService } from '../../service/event.service'
-import { Square, Board } from '../../model/game.model';
+import { Square } from '../../model/game.model';
 
 @Component({
   selector: 'app-square',
@@ -11,7 +11,7 @@ import { Square, Board } from '../../model/game.model';
 export class SquareComponent {
 
   @Output()
-  changeBoardEvent = new EventEmitter<Board>();
+  makeMoveEvent = new EventEmitter<Square>();
   @Input()
   square: Square;
   isDisable: boolean;
@@ -42,11 +42,16 @@ export class SquareComponent {
     }
   }
 
+  // makeMove(): void {
+  //   this.httpService.makeMove(this.square.id, true).subscribe( board => {
+  //     this.eventService.emitChangeValueEvent(board);
+  //     this.changeBoardEvent.emit(board);
+  //   });
+  // }
+
   makeMove(): void {
-    this.httpService.makeMove(this.square.id, true).subscribe( board => {
-      this.eventService.emitChangeValueEvent(board);
-      this.changeBoardEvent.emit(board);
-    });
+      this.eventService.emitChangeValueEvent(this.square);
+      // this.changeBoardEvent.emit(board);
   }
 
   disableButton(): void {

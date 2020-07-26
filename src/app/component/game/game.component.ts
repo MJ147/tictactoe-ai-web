@@ -1,8 +1,10 @@
 import { Component, ViewChild} from '@angular/core';
-import { Game } from '../../model/game.model';
+import { Game, Board } from '../../model/game.model';
 import { HttpService } from '../../service/http.service'
 import { EventService } from 'src/app/service/event.service';
 import { BoardComponent } from '../board/board.component';
+import { LoadingComponent } from '../loading/loading.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game',
@@ -19,9 +21,12 @@ export class GameComponent {
   isSideBarOpen = false;
   pvpColor: String = "primary";
   pvcColor: String = "secondary";
+  aiPlayer = false;
+  dialogRef;
 
   constructor(private httpService: HttpService,
-              private eventService: EventService) {}
+              private eventService: EventService,
+              public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.createGame();
@@ -30,9 +35,18 @@ export class GameComponent {
   createGame(): void {
     this.httpService.createGame().subscribe(game => {
       this.game = game;
-      this.eventService.changeValueListener().subscribe(() => {
-        this.checkWin();
+      this.eventService.changeValueListener().subscribe(square => {
+        if (square != null) {
+          this.makeMove(square.id, this.aiPlayer);
+        }
       })
+    });
+  }
+
+  makeMove(squareId: number, aiPlayer: boolean): void {
+    this.httpService.makeMove(squareId, aiPlayer).subscribe( board => {
+      this.game.board = board;
+      this.checkWin(board);
     });
   }
 
@@ -46,12 +60,15 @@ export class GameComponent {
   }
 
   siulateGames(gameId: number, numberOfGames: number): void {
-    this.httpService.simulateGames(gameId, numberOfGames).subscribe();
+    this.openDialog();
+    this.httpService.simulateGames(gameId, numberOfGames).subscribe( () => {
+      this.closeDialog();
+    });
     this.resetBoard(this.game.board.id);
   }
 
-  checkWin(): void {
-    this.httpService.checkWin(this.game.board.id).subscribe(winStatus => {
+  checkWin(board: Board): void {
+    this.httpService.checkWin(board.id).subscribe(winStatus => {
       switch(winStatus) {
         case 1: {
           this.info = "Player X won!";
@@ -71,6 +88,10 @@ export class GameComponent {
     });
   }
 
+  deleteAllMoves(){
+    this.httpService.deleteAllMoves().subscribe();
+  }
+
   saveAi(fileName: string){
     this.httpService.saveAi(fileName).subscribe();
   }
@@ -80,15 +101,31 @@ export class GameComponent {
   }
 
   pvpMode(): void {
+    this.isAiPlayer(false);
     this.isSideBarOpen = false;
     this.pvpColor = "primary";
     this.pvcColor = "secondary";
+    this.resetBoard(this.game.board.id);
   }
 
   pvcMode(): void {
+    this.isAiPlayer(true);
     this.isSideBarOpen = true;
     this.pvpColor = "secondary";
     this.pvcColor = "primary";
+    this.resetBoard(this.game.board.id);
   }
 
+  isAiPlayer(aiPlayer: boolean): void {
+    this.aiPlayer = aiPlayer;
+  }
+
+  openDialog() {
+    this.dialogRef = this.dialog.open(LoadingComponent);
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+  
 }
