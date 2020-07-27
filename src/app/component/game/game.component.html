@@ -4,28 +4,51 @@
             <p class="menu-title">AI PLAYER OPTIONS</p>
         </div>
         <div class="menu">
-            <p class="menu-text">Choose pre learned Computer Player, 
-                                 after a given number of games played:</p>
+            <p class="menu-text">Choose pre learned Computer Player,
+                after a given number of games played:</p>
             <div class="ai-menu">
                 <button mat-raised-button color="accent" class="main-button" (click)="loadAi('1000.csv')">1000</button>
-                <button mat-raised-button color="accent" class="main-button" (click)="loadAi('10000.csv')">10000</button>
-                <button mat-raised-button color="accent" class="main-button" (click)="loadAi('100000.csv')">100000</button>
+                <button mat-raised-button color="accent" class="main-button"
+                    (click)="loadAi('10000.csv')">10000</button>
+                <button mat-raised-button color="accent" class="main-button"
+                    (click)="loadAi('100000.csv')">100000</button>
             </div>
             <p class="menu-text">Reset player skills and learn Computer Player by play with you:
             </p>
-            <button mat-raised-button color="accent" class="main-button" (click)="deleteAllMoves()">RESET AI PLAYER</button>
+            <button mat-raised-button color="accent" class="main-button" (click)="deleteAllMoves()">RESET AI
+                PLAYER</button>
             <p class="menu-text">You can also speed up Computer Player learning by simulating 1000 games.
-                                 It will take something about a minute:</p>
-            <button mat-raised-button color="accent" class="main-button" (click)="siulateGames(game.id, 1000)">SIMULATE 1000 GAMES</button>
+                It will take something about a minute:</p>
+            <button mat-raised-button color="accent" class="main-button" (click)="siulateGames(game.id, 1000)">SIMULATE
+                1000 GAMES</button>
         </div>
     </mat-drawer>
     <mat-drawer-content>
         <div class="board-container">
-            <button mat-raised-button [color]="pvpColor" class="main-button" (click)="pvpMode()">PLAYER VS PLAYER</button>
-            <button mat-raised-button [color]="pvcColor" class="main-button" (click)="pvcMode()">PLAYER VS COMPUTER</button>
+            <button mat-raised-button [color]="pvpColor" class="main-button" (click)="pvpMode()">PLAYER VS
+                PLAYER</button>
+            <button mat-raised-button [color]="pvcColor" class="main-button" (click)="pvcMode()">PLAYER VS
+                COMPUTER</button>
             <p class="info"> {{ info }} </p>
-            <app-board [board]="game.board"></app-board>
-            <button mat-raised-button color="primary" class="main-button" (click)="resetBoard(game.board.id)">PLAY AGAIN</button>
+            <div *ngIf="showBoard; else notShow">
+                <app-board [board]="game.board"></app-board>
+            </div>
+            <ng-template #notShow>
+                <mat-card>
+                    <div class="warning">
+                        <div *ngIf="showWarning" class="warning-text">
+                            Please be patient :) <br><br>
+                                <h3>The app use free heroku hosting. <br>
+                                    It takes about 1 minute to wake it up. <br>
+                                    After 30 minutes of inactivity, it falls asleep again. </h3>
+                            
+                        </div>
+                    </div>
+                </mat-card>
+
+            </ng-template>
+            <button mat-raised-button color="primary" class="main-button" (click)="resetBoard(game.board.id)">PLAY
+                AGAIN</button>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>
