@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class HttpService {
 
-  readonly ROOT_URL = 'http://localhost:8080/';
+  readonly ROOT_URL = 'https://tictactoe147.herokuapp.com/';
 
   constructor(private http: HttpClient) { }
 

@@ -23,18 +23,25 @@ export class GameComponent {
   pvcColor: String = "secondary";
   aiPlayer = false;
   dialogRef;
+  showBoard: boolean = false;
+  showWarning: boolean = false;
 
   constructor(private httpService: HttpService,
               private eventService: EventService,
               public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.showWarning = true;
+    }, 1000);
     this.createGame();
+
   }
 
   createGame(): void {
     this.httpService.createGame().subscribe(game => {
       this.game = game;
+      this.showBoard = true;
       this.eventService.changeValueListener().subscribe(square => {
         if (square != null) {
           this.makeMove(square.id, this.aiPlayer);

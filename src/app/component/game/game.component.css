@@ -78,3 +78,22 @@ app-board {
     margin: 40px 0 0;
 }
 
+.warning {
+    width: 270px;
+    height: 290px;
+    margin: auto;
+    display: flex;
+}
+
+mat-card {
+    padding: 5px;
+}
+
+.warning-text {
+
+    color: #69F0AE;
+    text-align: center;
+    font-size: 25px;
+    margin: auto;
+}
+
