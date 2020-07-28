@@ -6,7 +6,7 @@ A frontend part of application basic on classic tic-tac-toe game. The game has t
 The computer player instance was created using machine learning.  
 
 ## Links
-* deployed application: https://www.mj147.pl/tictactoe
+* deployed application: http://www.mj147.pl/tictactoe
 * backend part: https://github.com/MJ147/tictactoe-ai-backend
 
 ## Screenshots
