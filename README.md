@@ -1,8 +1,8 @@
 # Tictactoe Ai Fronted
-A frontend part of tic-tac-toe application, using machine learning.
+The frontend part of tic-tac-toe application, using machine learning.
 
 ## General info
-A frontend part of application basic on classic tic-tac-toe game. The game has two modes: player vs player and player vs AI.
+The frontend part of application basic on classic tic-tac-toe game. The game has two modes: player vs player and player vs AI.
 The computer player instance was created using machine learning.  
 
 ## Links
