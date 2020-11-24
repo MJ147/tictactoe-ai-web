@@ -1,4 +1,4 @@
-# Tictactoe Ai Fronted
+# Tictactoe Ai Web
 The frontend part of tic-tac-toe application, using machine learning.
 
 ## General info
